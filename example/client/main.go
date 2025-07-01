@@ -9,7 +9,7 @@ import (
 	"os"
 	"time"
 
-	pb "github.com/stones-hub/taurus-pro-grpc/pkg/example/proto/echo"
+	pb "github.com/stones-hub/taurus-pro-grpc/example/proto/echo"
 	"github.com/stones-hub/taurus-pro-grpc/pkg/grpc/client"
 	"google.golang.org/grpc/keepalive"
 )

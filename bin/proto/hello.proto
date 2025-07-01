@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package hello;
+
+option go_package = "github.com/stones-hub/taurus-pro-grpc/bin/proto";
+
+// Hello 服务定义
+service Hello {
+  // SayHello 简单的一元调用
+  rpc SayHello(HelloRequest) returns (HelloResponse) {}
+}
+
+// Hello 请求
+message HelloRequest {
+  string name = 1;
+}
+
+// Hello 响应
+message HelloResponse {
+  string message = 1;
+} 
