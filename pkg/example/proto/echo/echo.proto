@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package echo;
+
+option go_package = "github.com/stones-hub/taurus-pro-grpc/pkg/example/proto/echo";
+
+// Echo 服务定义
+service Echo {
+  // UnaryEcho 一元 Echo
+  rpc UnaryEcho(EchoRequest) returns (EchoResponse) {}
+  
+  // StreamEcho 流式 Echo
+  rpc StreamEcho(stream EchoRequest) returns (stream EchoResponse) {}
+}
+
+// Echo 请求
+message EchoRequest {
+  string message = 1;
+}
+
+// Echo 响应
+message EchoResponse {
+  string message = 1;
+} 

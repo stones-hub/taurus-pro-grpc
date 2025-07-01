@@ -37,8 +37,6 @@ type Server struct {
 	opts   *ServerOptions // 服务器配置
 }
 
-var GlobalgRPCServer *Server
-
 // NewServer 创建新的gRPC服务器
 func NewServer(opts ...ServerOption) (*Server, func(), error) {
 	options := DefaultServerOptions()
@@ -122,17 +120,15 @@ func NewServer(opts ...ServerOption) (*Server, func(), error) {
 	healthServer := health.NewServer()
 	grpc_health_v1.RegisterHealthServer(server, healthServer)
 
-	GlobalgRPCServer = &Server{
+	grpcServer := &Server{
 		server: server,
 		opts:   options,
 	}
 
-	cleanup := func() {
-		GlobalgRPCServer.server.GracefulStop()
+	return grpcServer, func() {
+		grpcServer.server.GracefulStop()
 		log.Println("gRPC server stopped successfully")
-	}
-
-	return GlobalgRPCServer, cleanup, nil
+	}, nil
 }
 
 // Start 启动服务器
